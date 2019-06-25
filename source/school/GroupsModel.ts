@@ -1,17 +1,12 @@
-import { validate } from './validate';
+import { Groups } from "./interfaces/group";
 
 export class GroupsModel {
-    schema: { "id": string; "room": string; };
-    pupils: Map<any, any>;
+    pupils: Map<number, any>;
     list: Map<any, any>;
     
     constructor() {
         this.list = new Map();
         this.pupils = new Map();
-        this.schema = {
-            "id": "string",
-            "room": "number"
-        }
     }
 
     async add(room: number, level = 1) {
@@ -32,9 +27,9 @@ export class GroupsModel {
         }
     }
 
-    async addPupil(groupID: number, pupilID: number) {
+    async addPupil(groupID: number, pupilID: Groups) {
         this.pupils.set(groupID, pupilID);
-        var pupils = [...this.pupils];
+        var pupils = this.pupils;
         var room = this.list.get(groupID).room;
         var level = this.list.get(groupID).level;
         let group = {

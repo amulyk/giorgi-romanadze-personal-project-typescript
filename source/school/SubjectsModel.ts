@@ -1,4 +1,4 @@
-import { Subject } from "./interfaces/subject";
+// import { Subject } from "./interfaces/subject";
 
 export class SubjectsModel {
     id: number;
@@ -14,5 +14,4 @@ export class SubjectsModel {
             description
         }
     }
-
 }

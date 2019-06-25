@@ -1,8 +1,9 @@
 import {
-    validate
-} from './validate';
+    Lms
+} from "./interfaces/lms";
+
 export class LMSModel {
-    ele: Set<any>;
+    ele: Set<string>;
     constructor() {
         this.ele = new Set();
     }

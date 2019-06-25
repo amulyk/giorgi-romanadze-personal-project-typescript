@@ -1,24 +1,20 @@
-// import { Subject } from "./interfaces/subject";
+import { Pupils } from "./interfaces/pupil";
 
 export class PupilsModel {
 
-    // schema: { "name": { "first": string; "last": string; }; "image": string; "dateOfBirth": string; "phones": { "phone": string; "primary": string; }[]; "sex": string; "description": string; };
     pupils: Map<number, any>;
 
     constructor() {
         this.pupils = new Map();
     }
-    async add(pupil: any) {
+    async add(pupil: Pupils) {
         if (typeof pupil !== 'object') {
             throw new Error("Pass the object parameter !")
         }
-        if (validate(this.schema, pupil)) {
+        else {
             let id = Math.ceil(Math.random() * 100000000000);
             this.pupils.set(id, pupil);
             return id;
-        }
-        else {
-            throw new Error('Oops,here is some problem.We can not add this item !');
         }
     }
 

@@ -1,4 +1,3 @@
-
 export interface Gradebook {
     subjectId ?: string;
     lesson ?: number;

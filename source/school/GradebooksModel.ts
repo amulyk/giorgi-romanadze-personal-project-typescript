@@ -1,6 +1,6 @@
 import {
-    validate
-} from "./validate";
+    Gradebook
+} from "./interfaces/grade";
 
 export class GradebooksModel {
     public obj: {};
@@ -38,7 +38,6 @@ export class GradebooksModel {
 
     async clear() {
         return delete this.gradebook;
-        // console.log(this.gradebook)
     }
 
     async addRecord(gradebookId: number, record: any) {
