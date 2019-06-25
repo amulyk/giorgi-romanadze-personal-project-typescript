@@ -6,12 +6,10 @@ export class TeachersModel {
     this.teachers = new Map();
   }
 
-  async add(teacher: any) {
-    const validation: Teacher = teacher;
+  async add(teacher: Teacher) {
     let id = Math.ceil(Math.random() * 100000000000);
     this.teachers.set(id, teacher);
     return id;
-
   }
 
   async read(id: number) {
@@ -19,7 +17,7 @@ export class TeachersModel {
       throw new Error('Oops,here is some problem. Please enter correct id.')
     else {
       var teacher = this.teachers.get(id);
-      var obj = { id, ...teacher }
+      var obj = { id, ...teacher };
       return obj;
     }
   }
@@ -32,5 +30,3 @@ export class TeachersModel {
     }
   }
 }
-
-
