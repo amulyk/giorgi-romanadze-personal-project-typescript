@@ -32,6 +32,6 @@ export class LMSModel {
     }
 
     async readAll() {
-        return [...this.ele]
+        return this.ele
     }
 }

@@ -1,13 +1,11 @@
 import {
-    SubjectsModel,
-    LMSModel,
-    TeachersModel,
-    PupilsModel,
     GroupsModel,
     GradebooksModel,
-} from './school/index';
-
-
+    LMSModel,
+    PupilsModel,
+    SubjectsModel,
+    TeachersModel,
+} from "./school/index";
 (async () => {
     try {
         /*
@@ -16,19 +14,19 @@ import {
          */
 
         const history = new SubjectsModel({
-            title: 'History',
+            description: "Some text",
             lessons: 24,
-            description: 'Some text'
+            title: "History",
         });
 
         const mathe = new SubjectsModel({
-            title: 'mathematics',
+            description: "I love math !",
             lessons: 22,
-            description: 'I love math !'
+            title: "mathematics",
         });
 
-        var historyid = history.id
-        console.log(historyid)
+        const historyid = history.id;
+        console.log(historyid);
         const lms = new LMSModel();
         await lms.add(history);
         await lms.add(mathe);
@@ -36,130 +34,129 @@ import {
         await lms.remove(history);
         console.log(await lms.readAll());
 
-
         /*
             TeachersModel starts here
             Version: 2.8.4
         */
 
-        var teacherObj = {
-            "name": {
-                "first": 'Giorgi',
-                "last": "Romanadze"
+        const teacherObj = {
+            dateOfBirth: "19-12-1997",
+            description: "A Good teacher",
+            emails: [
+                {
+                    email: "giushkki@gmail.com",
+                    primary: true,
+                },
+            ],
+            image: "image",
+            name: {
+                first: "Giorgi",
+                last: "Romanadze",
             },
-            "image": "image",
-            "dateOfBirth": "03/03/1970",
-            "emails": [{
-                "email": "gromanadze@gmail.com",
-                "primary": true
-            }],
-            "phones": [{
-                "phone": "555131313",
-                "primary": true
-            }],
-            "sex": "male",
-            "subjects": [{
-                "subject": "Mathematics"
-            }],
-            "description": "Test desc",
+            phones: [
+                {
+                    phone: "555506089",
+                    primary: true,
+                },
+            ],
+            sex: "male",
+            subjects: [
+                {
+                    subject: "Math",
+                },
+            ],
         };
 
-
-        var teacherSecondObject = {
-            "name": {
-                "first": 'Ana',
-                "last": "Gogitidze"
-            },
-            "image": "image",
-            "dateOfBirth": "03/02/1980",
-            "emails": [{
-                "email": "anamaria13@gmail.com",
-                "primary": true
+        const teacherSecondObject = {
+            dateOfBirth: "03/02/1980",
+            emails: [{
+                email: "anamaria13@gmail.com",
+                primary: true,
             }],
-            "phones": [{
-                "phone": "555131231",
-                "primary": true
+            image: "image",
+            name: {
+                first: "Ana",
+                last: "Gogitidze",
+            },
+            phones: [{
+                phone: "555131231",
+                primary: true,
             },
             {
-                "phone": "555145412",
-                "primary": false
-            }
+                phone: "555145412",
+                primary: false,
+            },
             ],
-            "sex": "female"
+            sex: "female",
         };
 
-        var obj = {
-            "name": {
-                "first": 'Niko',
-                "last": "Meladze"
+        const obj = {
+            name: {
+                first: "Niko",
+                last: "Meladze",
             },
-            "phones": [{
-                "phone": "555141515",
-                "primary": false
+            phones: [{
+                phone: "555141515",
+                primary: false,
             },
             {
-                "phone": "555181815",
-                "primary": true
-            }
+                phone: "555181815",
+                primary: true,
+            },
             ],
-        }
-
+        };
 
         const teacher = new TeachersModel();
-        var teacherid = await teacher.add(teacherObj);
-        await teacher.update(teacherid, obj)
-        await teacher.read(teacherid)
-        var teacherid = await teacher.add(teacherObj);
-        var result = await teacher.read(teacherid);
-        var update = await teacher.update(teacherid, teacherSecondObject);
-        result = await teacher.read(teacherid);
-        var deletedteacher = await teacher.remove(teacherid);
-
-
+        let teacherid = await teacher.add(teacherObj);
+        await teacher.update(teacherid, obj);
+        await teacher.read(teacherid);
+        teacherid = await teacher.add(teacherObj);
+        let resultTeacher = await teacher.read(teacherid);
+        const updateTeacher = await teacher.update(teacherid, teacherSecondObject);
+        resultTeacher = await teacher.read(teacherid);
+        const deletedteacher = await teacher.remove(teacherid);
 
         /*
             PupilModel starts here
             Version: 1.0.9
         */
 
-        var pupil1 = {
-            "name": {
-                "first": "Giorgi",
-                "last": "Romanadze"
+        const pupil1 = {
+            dateOfBirth: "23/03/1998",
+            description: "A Good pupil",
+            image: "string",
+            name: {
+                first: "Giorgi",
+                last: "Romanadze",
             },
-            "image": "string",
-            "dateOfBirth": "23/03/1998",
-            "phones": [{
-                "phone": "555141315",
-                "primary": true
+            phones: [{
+                phone: "555141315",
+                primary: true,
             }],
-            "sex": 'male',
-            "description": "A Good pupil",
-        }
+            sex: "male",
+        };
 
-        var pupil2 = {
-            "name": {
-                "first": "Lasha",
-                "last": "Romanadze"
+        const pupil2 = {
+            dateOfBirth: "23/03/1990",
+            description: "Updated Desc",
+            image: "string",
+            name: {
+                first: "Lasha",
+                last: "Romanadze",
             },
-            "image": "string",
-            "dateOfBirth": "23/03/1990",
-            "phones": [{
-                "phone": "598785151",
-                "primary": true
+            phones: [{
+                phone: "598785151",
+                primary: true,
             }],
-            "sex": 'male',
-            "description": "Updated Desc",
-        }
+            sex: "male",
+        };
 
         const pupils = new PupilsModel();
-        var pupilid = await pupils.add(pupil1);
-        var result = await pupils.read(pupilid);
-        var update = await pupils.update(pupilid, pupil2);
+        const pupilid = await pupils.add(pupil1);
+        let result = await pupils.read(pupilid);
+        const update = await pupils.update(pupilid, pupil2);
         result = await pupils.read(pupilid);
-        var deletedpupils = await pupils.remove(pupilid);
-
-
+        const deletedpupils = await pupils.remove(pupilid);
 
         /*
             GroupsModel starts here
@@ -172,11 +169,10 @@ import {
         await groups.addPupil(groupId, pupilid);
         await groups.addPupil(groupId, pupilid);
         await groups.update(groupId, {
-            room: 237
-        })
+            room: 237,
+        });
         // console.log(await groups.read(groupId))
-        await groups.readAll()
-
+        await groups.readAll();
 
         /*
             GradebooksModel starts here
@@ -191,28 +187,23 @@ import {
         await gradebooks.clear();
         //    console.log(gradebookId)
 
-
         /*
             TeachersModels starts here
             Version: 1.0.9
         */
 
         const teacherrecord = new TeachersModel();
-        var teacheridrecord = await teacher.add(teacherObj);
+        const teacheridrecord = await teacher.add(teacherObj);
         const record = {
-            pupilId: pupilId,
-            teacherId: teacheridrecord,
-            subjectId: history.id,
             lesson: 1,
-            mark: 9
+            mark: 9,
+            pupilId,
+            subjectId: history.id,
+            teacherId: teacheridrecord,
         };
-
-        let recordOut = await gradebooks.addRecord(gradebookId, record);
+        const recordOut = await gradebooks.addRecord(gradebookId, record);
         const students = await gradebooks.readAll(gradebookId);
+    } catch (err) {
+        console.log(err);
     }
-
-    catch (err) {
-        console.log(err)
-    }
-
 })();

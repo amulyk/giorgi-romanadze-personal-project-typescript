@@ -1,17 +1,16 @@
 import {
     validate
-} from './validate';
-
+} from "./validate";
 
 export class GradebooksModel {
-    obj: {};
-    arr: any[];
-    gradebook: Map<any, any>;
-    teachers: any;
-    lms: any;
-    groups: any;
-    id: string;
-    mainbook: any;
+    public obj: {};
+    public arr: any[];
+    public gradebook: Map<any, any>;
+    public teachers: any;
+    public lms: any;
+    public groups: any;
+    private id: string;
+    public mainbook: any;
 
     constructor(groups: any, teachers: any, lms: any) {
         this.obj = {}

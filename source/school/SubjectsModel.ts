@@ -1,3 +1,5 @@
+import { Subject } from "./interfaces/subject";
+
 export class SubjectsModel {
     id: number;
     subject: { title: string; lessons: string; description: string; };
