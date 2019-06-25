@@ -5,7 +5,7 @@ import {
     PupilsModel,
     GroupsModel,
     GradebooksModel,
-} from './school';
+} from './school/index';
 
 
 (async () => {

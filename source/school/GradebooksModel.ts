@@ -4,8 +4,16 @@ import {
 
 
 export class GradebooksModel {
+    obj: {};
+    arr: any[];
+    gradebook: Map<any, any>;
+    teachers: any;
+    lms: any;
+    groups: any;
+    id: string;
+    mainbook: any;
 
-    constructor(groups, teachers, lms) {
+    constructor(groups: any, teachers: any, lms: any) {
         this.obj = {}
         this.gradebook = new Map();
         this.arr = [];
@@ -15,13 +23,13 @@ export class GradebooksModel {
         this.id = "";
     }
 
-    async add(level, groupId) {
-        if (typeof level !== 'number' || typeof groupId !== 'number') {
+    async add(level: number, groupId: number) {
+        if (typeof level == 'undefined' || typeof groupId == 'undefined') {
             throw new Error("Oops,here is some problem. This item must be a number !")
         }
         else {
-            let obj = {};
-            obj.id = this.id = Math.ceil(Math.random() * 100000000000);
+            let obj : any = {};
+            obj.id = Math.ceil(Math.random() * 100000000000);
             obj.level = level;
             obj.groupid = groupId;
             this.gradebook.set(this.id, obj);
@@ -34,7 +42,7 @@ export class GradebooksModel {
         // console.log(this.gradebook)
     }
 
-    async addRecord(gradebookId, record) {
+    async addRecord(gradebookId: number, record: any) {
         // console.log(gradebookId, record)
         if (typeof gradebookId !== 'undefined' || typeof gradebookId !== 'number') {
             throw new Error("Ooops,here is some problem...")
@@ -67,7 +75,7 @@ export class GradebooksModel {
     }
 
 
-    async read(first, second) {
+    async read(first: string, second: string) {
         for (let i = 0; i < this.arr.length; i++) {
             if (this.arr[i].gradebookid == first && this.arr[i].idpupil == second) {
                 return this.arr[i].record;
@@ -75,13 +83,8 @@ export class GradebooksModel {
         }
     }
 
-    async readAll(id) {
+    async readAll(id: string) {
 
-        if (typeof id !== 'number') {
-            throw new Error("Ooops,here is some problem...")
-        }
-
-        else {
             let result = [];
             for (let i = 0; i < this.arr.length; i++) {
                 if (this.arr[i].gradebookid == id) {
@@ -89,6 +92,5 @@ export class GradebooksModel {
                 }
             }
             return result;
-        }
     }
 }

@@ -1,6 +1,9 @@
 import { validate } from './validate';
 
 export class GroupsModel {
+    schema: { "id": string; "room": string; };
+    pupils: Map<any, any>;
+    list: Map<any, any>;
     
     constructor() {
         this.list = new Map();
@@ -11,8 +14,8 @@ export class GroupsModel {
         }
     }
 
-    async add(room, level = 1) {
-        if (typeof room !== 'number' || typeof level !== 'number')
+    async add(room: number, level = 1) {
+        if (typeof room == 'undefined')
             throw new Error('Oops,here is some problem.We can not add this item !')
         else {
             const id = Math.ceil(Math.random() * 100000);
@@ -29,7 +32,7 @@ export class GroupsModel {
         }
     }
 
-    async addPupil(groupID, pupilID) {
+    async addPupil(groupID: number, pupilID: number) {
         this.pupils.set(groupID, pupilID);
         var pupils = [...this.pupils];
         var room = this.list.get(groupID).room;
@@ -46,15 +49,15 @@ export class GroupsModel {
     }
 
 
-    async removePupil(groupID, pupilID) {
+    async removePupil(groupID: number, pupilID: number) {
         if (typeof this.list.get(groupID) == 'undefined')
             throw new Error("Oops,here is some problem.We can not update this item !")
         else {
-            return this.list.delete(id);
+            return this.list.delete(pupilID);
         }
     }
 
-    async read(groupID) {
+    async read(groupID: number) {
         if (typeof this.list.get(groupID) !== 'undefined') {
             var room = this.list.get(groupID).room;
             var group = {
@@ -68,7 +71,7 @@ export class GroupsModel {
         }
     }
 
-    async update(id, ele) {
+    async update(id: number, ele: any) {
 
         if (this.list.get(id) == null) {
             throw new Error('Oops,here is some problem.We can not update this item !');
